@@ -1,13 +1,13 @@
 /* //W13D4 */
 
-/* * CSS Custom Properties */ */
+/* * CSS Custom Properties */ 
 :root {
   --white: #FFFFFF;
-  --tan-1: #15eb11;
-  --tan-2: #2714d5;
-  --tan-3: #18e6d4;
-  --tan-4: #ed6e13ae;
-  --blue: #007Ff7;
+  --tan-1: #FBF9F6;
+  --tan-2: #E7E2DD;
+  --tan-3: #E2D9D1;
+  --tan-4: #D3C1AE;
+  --blue: #F67F00;
   --text-light: #968c84;
   --text-dark: #615954;
 }
