@@ -35,6 +35,9 @@ const userRouter = require("./routes/api/users.cjs")
 app.use('/api/users', userRouter);
 
 
+// events api
+const sportEvents = require('./routes/api/sportEvents.cjs');
+app.use('/api/sportEvents', sportEvents);
 
 // The following "catch all" route (note the *) is necessary
 // to return the index.html on all non-AJAX requests
