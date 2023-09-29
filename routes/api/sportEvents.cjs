@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const sporteventsCtrl = require('../../controllers/api/sportEvents.cjs');
+const sportEvent = require('../../models/sportEvent.cjs');
 
 
 // router.post('/', sporteventsCtrl.create);
@@ -22,9 +23,82 @@ router.post('/',(req, res) => {
     if(req.body.imageURL) eventFields.imageURL = req.body.imageURL;
     if(req.body.start) eventFields.start = req.body.start;
 
-    // new GameEvent(eventFields).save().then(event => res.json(event));
+    new GameEvent(eventFields).save().then(event => res.json(event));
+});
+
+router.get('/:id', (req, res) => {
+    Event.findById(req.params.id)
+        .populate('user', ['name'])
+        .then(event => res.json(event))
+        .catch(err =>
+            res.status(404).json({error: "Error in get api/events/:id. " + err})
+        );
+});
+
+// @route   PUT api/events/:id/join
+// @desc    Join an event
+// @access  private
+
+router.put('/:id/join',  (req, res) => {
+   
+    Event.findById(req.params.id)
+        //.populate('user', ['name'])
+        .then(event => {
+            if(!event){
+                return res.status(404).json({msg: 'This event is no longer available:',
+            event:event});
+            }
+            
+            let count = 0;
+            
+            for(let i of event.players_list){
+                if(i["id"] === req.user.id){
+                    return res.status(400).json({msg: 'You have already joined this event:', event:event});
+                }
+                count++;
+            }
+            
+            if(count >= event.players_required){
+                return res.status(400).json({msg: 'This event is currently full:', event:event});
+            }
+            
+            const userName = req.body.user_name;
+            
+            const newPlayer = {
+                id: req.body.user_id,
+                name: userName
+            };
+            console.log(newPlayer);
+            event.players_list.push(newPlayer);
+            return event.save();
+        })
+        .then(result => {
+           
+            res.status(200).json({
+                msg: 'Success on joining that event',
+                event: result
+            });
+        })
+        .catch(err => res.status(404).json({error: "Error in put api/events/:id/join. " + err}));
 });
 
 
+// @route   DELETE api/events/:id/
+// @desc    delete an event
+// @access  private
+
+
+router.delete('/:id', (req, res) => {
+    Event.findById(req.params.id)
+        .then(event => {
+            if(event.user.toString() !== req.user.id){
+                return res.status(401).json({msg: 'You are not authorized to delete this event:',event:event});
+            }
+            event.remove().then(() => res.status(200).json({msg: 'You have successfully deleted this event:',event:event}));
+        })
+        .catch(err => res.status(404).json({error: "Error in delete api/events/:id. " + err}));
+});
 
 module.exports = router;
+
+
