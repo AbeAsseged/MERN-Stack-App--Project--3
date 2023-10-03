@@ -1,5 +1,3 @@
-//W14D2 cont. W14D1 notes 
-
 const { Schema, model } = require("mongoose")
 // Add the bcrypt library
 const bcrypt = require('bcrypt');

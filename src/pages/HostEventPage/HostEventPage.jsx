@@ -1,16 +1,8 @@
-// import { useState, useEffect, useRef } from 'react';
-// import styles from './NewEventPage.module.css';
-// import { Link, useNavigate } from 'react-router-dom';
-// import Logo from '../../components/Logo/Logo';
-// import NavBar from '../../components/NavBar/NavBar';
-// import SignUpForm from '../../components/SignUpForm/SignUpForm';
-// import LoginForm from '../../components/LoginForm/LoginForm';
 
-// const express = require('express');
-// const router = express.Router();
-// const eventsCtrl = require('../../controllers/api/events.cjs');
-// const Event = require('../../models/event.cjs');
-// const routes = require('../../routes/api/events.cjs')
+// import Logo from '../../components/Logo/Logo';
+
+
+
 
 
 import React, {useState, useEffect} from 'react';
@@ -18,7 +10,7 @@ import axios from 'axios';
 
 const HostEventPage = () => {
     const [events, setEvents] = useState([]);
-    const [joinCounts, setJoinCounts] = useState({});
+    // const [joinCounts, setJoinCounts] = useState({});
     const [newEvent, setNewEvent] = useState({
         eventName: '',
         eventType: '',
@@ -63,17 +55,17 @@ const HostEventPage = () => {
     };
 
 
-    const handleJoinEvent = async (eventId) => {
-      try {
-        await axios.post(`/api/events/${eventId}/join`);
-        setJoinCounts((prevCounts) => ({
-          ...prevCounts,
-          [eventId]: (prevCounts[eventId] || 0) + 1,
-        }));
-      } catch (error) {
-        console.error(error);
-      }
-    };
+    // const handleJoinEvent = async (eventId) => {
+    //   try {
+    //     await axios.post(`/api/events/${eventId}/join`);
+    //     setJoinCounts((prevCounts) => ({
+    //       ...prevCounts,
+    //       [eventId]: (prevCounts[eventId] || 0) + 1,
+    //     }));
+    //   } catch (error) {
+    //     console.error(error);
+    //   }
+    // };
 
     const updateEvent = async (eventId, updatedEvent) => {
         try {
@@ -185,11 +177,23 @@ const HostEventPage = () => {
                     <p>{
                         event.eventType
                     }</p>
+                    <p>{
+                        event.eventLocation
+                    }</p>
+                    <p>{
+                        event.date
+                    }</p>
+                    <p>{
+                        event.eventTime
+                    }</p>
+                    <p>{
+                        event.joinEvent
+                    }</p>
                     <button onClick={
                         () => updateEvent(event._id, {joined: true})
                     }>Join Event</button>
-                    <button onClick={() => handleJoinEvent(event._id)}>Join Event</button>
-                    <span>Join Count: {joinCounts[event._id] || 0}</span>
+                    {/* <button onClick={() => handleJoinEvent(event._id)}>Join Event</button> */}
+                    {/* <span>Join Count: {joinCounts[event._id] || 0}</span> */}
                     <button onClick={
                         () => deleteEvent(event._id)
                     }>Delete Event</button>
@@ -204,11 +208,35 @@ const HostEventPage = () => {
 export default HostEventPage;
 
 
-// const express = require('express');
-// const router = express.Router();
-// const eventsCtrl = require('../../controllers/api/events.cjs');
-// const Event = require('../../models/event.cjs');
-// const routes = require('../../routes/api/events.cjs')
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 // import React, { useState } from 'react';
 
 
@@ -265,20 +293,5 @@ export default HostEventPage;
 // export default HostEventPage
 
 
-// function onButtonClick(){
-// document.getElementById('textInput').className="show";
-// }
-
-// <div class="answer_list" > WELCOME </div>
-// <input type="button" name="answer" value="Show Text Field" onclick="onButtonClick()" />
-// <input class="hide" type="text" id="textInput" value="..." />
 
 
-// w14D1
-// function NewOrderPage() {
-// return (
-//     <div>NewOrderPage</div>
-// )
-// }
-
-// export default NewOrderPage

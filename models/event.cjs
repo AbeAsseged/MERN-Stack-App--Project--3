@@ -31,6 +31,10 @@ const EventSchema = new Schema({
         type: String,
         required: true
     },
+    joinEvent: {
+        type: Number,
+        default: 0,
+      },
     
 });
 
