@@ -1,4 +1,12 @@
 # Introduction: Screen shots//
+// Image
+![image](https://github.com/AbeAsseged/MERN-Stack-App--Project--3/assets/137221446/b2fff40d-a172-4928-a26c-610cf2ddc3c2)
+
+
+
+![Capture2](https://github.com/AbeAsseged/MERN-Stack-App--Project--3/assets/137221446/0db854ef-a5dd-41ba-a142-eacf1b6c92be)
+
+
 
 Event Management App using the MERN stack (MongoDB, Express, React, and Node.js). Used Visual Studio Code as our local development environment. Created routes, defined models, connected to a database, and created the frontend with React components. Using with for a full CRUD (Create, Read, Update, Delete) functionality for hosting events, allowing users to host events using a button and see posted events and be able to join events using a button and where the join button counts clicks in increments on click evetime a user joins. 
 
