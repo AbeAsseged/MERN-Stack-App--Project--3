@@ -190,7 +190,7 @@ const HostEventPage = () => {
                         event.joinEvent
                     }</p>
                     <button onClick={
-                        () => updateEvent(event._id, {joined: true})
+                        () => updateEvent(event._id, {joinEvent: event.joinEvent + 1})
                     }>Join Event</button>
                     {/* <button onClick={() => handleJoinEvent(event._id)}>Join Event</button> */}
                     {/* <span>Join Count: {joinCounts[event._id] || 0}</span> */}
